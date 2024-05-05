@@ -1,17 +1,21 @@
+/* Recipes.css */
+
+
 .intial-logo {
     margin: auto;
     display: block;
     width: 700px;
     height: auto;
     margin-top: 20px;
-    
 }
+
 .primedeals-loader-container {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 60vh;
 }
+
 .register-prime-img {
     margin-top: 30px;
     display: flex;
@@ -19,13 +23,18 @@
     align-items: center;
     width: 500px;
 }
-.default-images-container{
+
+.default-images-container {
     display: flex;
-    flex-direction: center;
     justify-content: center;
+    align-items: center;
+    /* Align the image vertically */
+    min-height: 60vh;
+    /* Set a minimum height to ensure the container is visible */
 }
-.loading-container{
+
+.loading-container {
     display: flex;
-    flex-direction: center;
     justify-content: center;
+    align-items: center;
 }

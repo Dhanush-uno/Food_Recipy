@@ -34,16 +34,18 @@
 
         input {
             min-width: 250px;
-            padding: 0 .5em;
+            padding-left: 0 .5em;
             border-radius: 5px 0 0 5px;
             outline: none;
-            border: 1px solid #4d4d4d;
+            border: 0px solid #4d4d4d;
         }
 
         .btn {
             padding-block: 0;
-            padding-inline: .75em;
-            border-radius: 0 5px 5px 0;
+        
+            margin-right:0px;
+            border-top-right-radius: 30px;
+            border-bottom-right-radius: 30px;
         }
     }
         .delete-btn {

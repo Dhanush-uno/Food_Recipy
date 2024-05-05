@@ -54,7 +54,7 @@ const Recipes = () => {
     };
 
     return (
-        <div>
+        <div className='reci-card'>
             <PreviousSearches
                 search={search}
                 setSearch={setSearch}

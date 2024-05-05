@@ -4,6 +4,7 @@
     padding-bottom: 15vh;
     position: relative;
     background: white;
+    border: 2px solid red ;
 }
 
 .main .nav {
