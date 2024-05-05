@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import Cookies from 'js-cookie';
 import { useState } from "react";
-import Sidebar from "./Sidebar";
+import Sidebar from "./Sidobar";
 
 import { faHome, faList, faCog } from "@fortawesome/free-solid-svg-icons";
 
@@ -30,12 +30,8 @@ export default function Navbar() {
             name: "Settings",
             path: "/settings",
             icon: faCog
-        },
-        {
-            name: "Fav",
-            path: "/fav",
-            icon: faCog
         }
+        
     ];
 
     function closeSidebar() {
@@ -47,7 +43,7 @@ export default function Navbar() {
         <>
             {jwtToken && (
                 <div className="navbar container">
-                    <Link to="/" className="logo">F<span>oo</span>diesHub</Link>
+                    <Link to="/" className="logo">Food<span>Reci</span>Gen</Link>
                     <div className="nav-links">
                         {links.map(link => (
                             <Link className={location.pathname === link.path ? "active" : ""} to={link.path} key={link.name}>{link.name}</Link>

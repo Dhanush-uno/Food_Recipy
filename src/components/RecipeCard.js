@@ -25,6 +25,7 @@ const RecipeCard = ({ title, calories, image, ingredients }) => {
             <div className='recipe-image'>
                 <img src={image} alt={title} />
             </div>
+            
         </div>
     );
 };

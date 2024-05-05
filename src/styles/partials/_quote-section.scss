@@ -1,5 +1,7 @@
 .section.quote {
-    display: block;
+    display: flex;
+    flex-direction: row;
+
 
     .qoute-text {
         font-size: 1.2em;
@@ -17,5 +19,15 @@
         color: var(--text-light);
         text-align: right;
         margin-top: 1em;
+    }
+    .my-image {
+        width: 100px;
+        /* Adjust the width as needed */
+        height: auto;
+        /* Maintain aspect ratio */
+        border-radius: 50%;
+        /* Make the image round */
+        margin-bottom: 10px;
+        /* Add some margin below the image */
     }
 }

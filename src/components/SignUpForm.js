@@ -1,103 +1,97 @@
-import React, { Component } from 'react';
-import { withRouter, Redirect, Link } from 'react-router-dom';
 
-class SignupForm extends Component {
-    state = {
-        username: '',
+import React, { useState } from 'react';
+import axios from 'axios';
+// Importing CSS file
+import './sign.css';
+
+function Signup() {
+    const [formData, setFormData] = useState({
+        name: '',
         email: '',
-        password: '',
-        showSubmitError: false,
-        errorMsg: '',
-        redirectToLogin: false,
+        password: ''
+    });
+    const [isLoading, setIsLoading] = useState(false);
+    const [responseMessage, setResponseMessage] = useState('');
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
     };
 
-    onChangeUsername = event => {
-        this.setState({ username: event.target.value });
-    };
-
-    onChangeEmail = event => {
-        this.setState({ email: event.target.value });
-    };
-
-    onChangePassword = event => {
-        this.setState({ password: event.target.value });
-    };
-
-    submitForm = event => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        const { username, email, password } = this.state;
-        // Here, you can store the signup details in local storage
-        localStorage.setItem('signupDetails', JSON.stringify({ username, email, password }));
-        this.setState({ redirectToLogin: true });
-    };
 
-    renderUsernameField = () => {
-        const { username } = this.state;
-        return (
-            <>
-                <label htmlFor="username">Username</label>
-                <input
-                    type="text"
-                    id="username"
-                    value={username}
-                    onChange={this.onChangeUsername}
-                    placeholder="Enter your username"
-                />
-            </>
-        );
-    };
+        setIsLoading(true); 
 
-    renderEmailField = () => {
-        const { email } = this.state;
-        return (
-            <>
-                <label htmlFor="email">Email</label>
-                <input
-                    type="email"
-                    id="email"
-                    value={email}
-                    onChange={this.onChangeEmail}
-                    placeholder="Enter your email"
-                />
-            </>
-        );
-    };
+        try {
+        const response = await axios.post('https://aiback-itnw.onrender.com/signup/', formData);
+        console.log('Response:', response.data);
 
-    renderPasswordField = () => {
-        const { password } = this.state;
-        return (
-            <>
-                <label htmlFor="password">Password</label>
-                <input
-                    type="password"
-                    id="password"
-                    value={password}
-                    onChange={this.onChangePassword}
-                    placeholder="Enter your password"
-                />
-            </>
-        );
-    };
+        // Clear form fields
+        setFormData({
+            name: '',
+            email: '',
+            password: ''
+        });
 
-    render() {
-        const { redirectToLogin } = this.state;
-        if (redirectToLogin) {
-            return <Redirect to="/login" />;
+        setResponseMessage('Signup successful!');
+        } catch (error) {
+        console.error('Error:', error);
+        setResponseMessage('Signup failed. Please try again.');
+        } finally {
+        setIsLoading(false);
+
         }
+    };
 
-        return (
-            <div className="signup-form-container">
-                <h1>Sign Up</h1>
-                <form onSubmit={this.submitForm}>
-                    <div className="input-container">{this.renderUsernameField()}</div>
-                    <div className="input-container">{this.renderEmailField()}</div>
-                    <div className="input-container">{this.renderPasswordField()}</div>
-                    <button type="submit">Sign Up</button>
-                </form>
-                <p>Already have an account? <Link to="/login">Login</Link></p>
+    return (
+        <div className="signup-container">
+        <h2 className="signup-heading">Sign Up</h2>
+        <form onSubmit={handleSubmit} className="signup-form">
+            <div className="form-group">
+            <label htmlFor="name" className="form-label">Name</label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                className="form-input"
+                required
+            />
             </div>
-        );
-    }
+            <div className="form-group">
+            <label htmlFor="email" className="form-label">Email</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="form-input"
+                required
+            />
+            </div>
+            <div className="form-group">
+            <label htmlFor="password" className="form-label">Password</label>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                className="form-input"
+                required
+            />
+            </div>
+            <button type="submit" className="submit-btn btn" disabled={isLoading}>
+            {isLoading ? 'Signing Up...' : 'Sign Up'}
+            </button>
+            {responseMessage && <p className="response-message">{responseMessage}</p>}
+        </form>
+        <p className="login-link">Already have an account? <a href="/login">Log in</a></p>
+        </div>
+    );
 }
 
-export default withRouter(SignupForm);
+export default Signup;

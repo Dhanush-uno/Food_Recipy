@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+
 
 export default function ImproveSkills() {
     const list = [
@@ -20,7 +20,7 @@ export default function ImproveSkills() {
                 {list.map((item, index) => (
                     <p className="skill-item" key={index}>{item}</p>
                 ))}
-                <Link to='/Login'><button className="btn">Sign up</button></Link>
+                
             </div>
         </div>
     );

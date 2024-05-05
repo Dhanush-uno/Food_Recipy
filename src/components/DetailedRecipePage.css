@@ -1,5 +1,5 @@
 .detailed-recipe {
-    margin: 20px;
+    margin: 10px;
 }
 
 .recipe-details-container {
@@ -22,6 +22,8 @@
 .recipe-info h3 {
     margin-top: 10px;
     margin-bottom: 5px;
+    color: darkred;
+    font-size: 40px;
 }
 
 .recipe-info ul {
@@ -31,4 +33,11 @@
 
 .recipe-info li {
     list-style-type: disc;
+}
+.delete-btn{
+    margin-bottom: 10px;
+}
+.calories{
+    color: brown;
+    font-size: 20px;
 }
