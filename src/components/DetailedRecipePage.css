@@ -1,0 +1,34 @@
+.detailed-recipe {
+    margin: 20px;
+}
+
+.recipe-details-container {
+    display: flex;
+    align-items: center;
+}
+
+.recipe-image-container {
+    margin-right: 20px;
+}
+
+.recipe-info {
+    flex: 1;
+}
+
+.recipe-info p {
+    margin: 0;
+}
+
+.recipe-info h3 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.recipe-info ul {
+    padding-left: 20px;
+    margin-top: 5px;
+}
+
+.recipe-info li {
+    list-style-type: disc;
+}

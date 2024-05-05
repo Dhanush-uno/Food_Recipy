@@ -1,0 +1,23 @@
+.intial-logo {
+    margin: auto;
+    /* Center the image horizontally */
+    display: block;
+    width: 700px;
+    height: auto;
+    /* Ensure the image is displayed as a block element */
+    margin-top: 20px;
+    /* Add some space between the image and the previous searches */
+}
+.primedeals-loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+}
+.register-prime-img {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+}
