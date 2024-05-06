@@ -28,6 +28,13 @@ const Main = ({ title, calories, ingredients }) => {
     fetchUserProfile();
     // Call onSent when the component mounts
     onSent(`Generate recipe of ${title}`);
+
+    // Cleanup function to stop speech synthesis when component unmounts
+    return () => {
+      if (speechSynthesis.speaking) {
+        speechSynthesis.cancel();
+      }
+    };
   }, []); // Empty dependency array to trigger only on mount
 
   const fetchUserProfile = async () => {
@@ -55,28 +62,41 @@ const Main = ({ title, calories, ingredients }) => {
     }
   };
 
+  // Function to toggle speaking the result data
+  const toggleSpeakResultData = () => {
+    // If speech synthesis is currently speaking, stop it
+    if (speechSynthesis.speaking) {
+      speechSynthesis.cancel();
+    } else {
+      // If not speaking, speak the result data
+      const utterance = new SpeechSynthesisUtterance(resultData);
+      speechSynthesis.speak(utterance);
+    }
+  };
+
   return (
     <div className='main'>
       <div className="nav">
         <p className='spell-title'>Mom's Reci</p>
-        <img src="https://static.vecteezy.com/system/resources/previews/023/841/800/original/adorable-blue-bots-small-cute-robots-generated-by-ai-free-png.png" alt="user-image" />
       </div>
       <div className="main-container">
         {showResult ? (
           <div className="result">
             <div className='result-title'>
-              <img src="https://e7.pngegg.com/pngimages/81/570/png-clipart-profile-logo-computer-icons-user-user-blue-heroes-thumbnail.png" alt="user" />
+              <h1>your recipe is hereee.......</h1>
               <p>{recentPrompt}</p>
             </div>
             <div className="result-data">
-              <img src="https://static.vecteezy.com/system/resources/previews/023/841/800/original/adorable-blue-bots-small-cute-robots-generated-by-ai-free-png.png" alt="robot" />
               {loading ? (
                 <div className="loader">
                   <hr className="animated-bg" />
                   <hr className="animated-bg" />
                 </div>
               ) : (
-                <p dangerouslySetInnerHTML={{ __html: resultData }}></p>
+                <>
+                  <p dangerouslySetInnerHTML={{ __html: resultData }}></p>
+                  <button onClick={toggleSpeakResultData}>bolo ji</button> {/* Button to toggle speaking */}
+                </>
               )}
             </div>
           </div>
